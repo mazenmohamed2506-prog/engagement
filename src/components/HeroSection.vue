@@ -46,7 +46,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import heroBg from '@/assets/images/hero-bg.png'
+import heroBg from '@/assets/images/person.jpg'
 
 const animate = ref(false)
 
@@ -77,11 +77,11 @@ onMounted(() => {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(246, 238, 242, 0.4) 0%,
-    rgba(255, 251, 247, 0.3) 30%,
-    rgba(137, 120, 158, 0.2) 50%,
-    rgba(255, 251, 247, 0.4) 70%,
-    rgba(251, 248, 252, 0.8) 100%
+    rgba(17, 27, 48, 0.7) 0%,
+    rgba(17, 27, 48, 0.5) 30%,
+    rgba(17, 27, 48, 0.4) 50%,
+    rgba(17, 27, 48, 0.6) 70%,
+    rgba(17, 27, 48, 0.85) 100%
   );
 }
 
@@ -121,7 +121,7 @@ onMounted(() => {
   font-weight: 400;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--color-navy-light);
+  color: rgba(255, 255, 255, 0.9);
   opacity: 0;
   transform: translateY(20px);
   margin-bottom: 1.75rem;
@@ -131,9 +131,8 @@ onMounted(() => {
 .hero__names {
   font-family: var(--font-cursive);
   font-size: 3.8rem;
-  color: var(--color-navy);
-  line-height: 1.15;
-  text-shadow: 0 4px 20px rgba(75, 61, 91, 0.1);
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   opacity: 0;
   transform: translateY(20px);
 }
@@ -143,7 +142,7 @@ onMounted(() => {
   font-size: 2.8rem;
   color: var(--color-gold-light);
   margin: 0 0.15rem;
-  text-shadow: 0 2px 10px rgba(201, 169, 110, 0.15);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Ornamental divider */
@@ -174,10 +173,8 @@ onMounted(() => {
   font-size: 1.15rem;
   font-weight: 400;
   letter-spacing: 0.25em;
-  color: var(--color-navy);
-  opacity: 0;
-  transform: translateY(20px);
-  text-shadow: 0 2px 10px rgba(75, 61, 91, 0.05);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Venue hint */

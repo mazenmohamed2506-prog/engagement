@@ -34,6 +34,15 @@
                 <img :src="qrCode" alt="Venue QR code" class="flip-card__qr-image" />
               </div>
               <p class="flip-card__qr-subtitle">Point your camera at the QR code</p>
+              <a 
+                href="https://maps.app.goo.gl/i8YHZVXUZ6QQvRPm7" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="flip-card__qr-link"
+                @click.stop
+              >
+                Or Open in Google Maps
+              </a>
             </div>
             <p class="flip-card__hint flip-card__hint--back">Tap to flip back</p>
           </div>
@@ -45,7 +54,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import venueImg from '@/assets/images/venue.png'
+import venueImg from '@/assets/images/hand1.jpg'
 import qrCode from '@/assets/images/qr-code.png'
 
 const isFlipped = ref(false)
@@ -135,7 +144,7 @@ const isFlipped = ref(false)
   left: 0;
   right: 0;
   padding: 2rem 1.5rem;
-  background: linear-gradient(to top, rgba(255, 251, 247, 0.9), rgba(255, 251, 247, 0.4) 60%, transparent);
+  background: linear-gradient(to top, rgba(17, 27, 48, 0.9), rgba(17, 27, 48, 0.5) 60%, transparent);
   text-align: center;
 }
 
@@ -143,7 +152,8 @@ const isFlipped = ref(false)
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 500;
-  color: var(--color-navy);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .flip-card__venue-location {
@@ -151,19 +161,20 @@ const isFlipped = ref(false)
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-navy-light);
+  color: rgba(255, 255, 255, 0.8);
   margin-top: 0.25rem;
 }
 
 .flip-card__hint {
   font-family: var(--font-sans);
-  font-size: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-navy-light);
+  color: var(--color-navy-dark);
   text-align: center;
-  padding: 0.75rem 0;
-  opacity: 0.6;
+  padding: 1rem 0;
+  opacity: 1;
 }
 
 .flip-card__hint--back {
@@ -218,7 +229,28 @@ const isFlipped = ref(false)
   letter-spacing: 0.1em;
   color: var(--color-navy-light);
   margin-top: 1.25rem;
-  opacity: 0.7;
+  opacity: 0.8;
+}
+
+.flip-card__qr-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gold-dark);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-gold-dark);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.flip-card__qr-link:hover {
+  background: var(--color-gold-dark);
+  color: var(--color-ivory);
 }
 
 /* ── Rules ── */

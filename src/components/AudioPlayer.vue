@@ -39,9 +39,17 @@ let audio = null
 const isPlaying = ref(false)
 
 onMounted(() => {
-  audio = new Audio('/music/background.mp3')
+  audio = new Audio('/music/audiomass-output.mp3')
   audio.loop = true
   audio.preload = 'auto'
+  
+  // Attempt to play automatically since the user just clicked "Open" on the envelope
+  audio.play().then(() => {
+    isPlaying.value = true
+  }).catch((e) => {
+    // Autoplay was blocked (e.g., strict browser policies)
+    console.warn("Autoplay blocked:", e)
+  })
 })
 
 function toggleAudio() {

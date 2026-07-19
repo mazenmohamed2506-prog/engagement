@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import seaWaves from '@/assets/images/sea-waves.png'
+import seaWaves from '@/assets/images/debla.jpg'
 </script>
 
 <style scoped>
@@ -44,10 +44,10 @@ import seaWaves from '@/assets/images/sea-waves.png'
   justify-content: center;
   background: linear-gradient(
     to bottom,
-    rgba(255, 251, 247, 0.4) 0%,
-    rgba(255, 251, 247, 0.2) 30%,
-    rgba(255, 251, 247, 0.6) 80%,
-    rgba(251, 248, 252, 0.9) 100%
+    rgba(17, 27, 48, 0.4) 0%,
+    rgba(17, 27, 48, 0.2) 30%,
+    rgba(17, 27, 48, 0.6) 80%,
+    rgba(17, 27, 48, 0.95) 100%
   );
   text-align: center;
   padding: 2rem;
@@ -57,7 +57,8 @@ import seaWaves from '@/assets/images/sea-waves.png'
   font-family: var(--font-sans);
   font-size: 0.7rem;
   letter-spacing: 0.4em;
-  color: var(--color-navy);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
 }
@@ -65,7 +66,8 @@ import seaWaves from '@/assets/images/sea-waves.png'
 .save-the-date__the {
   font-family: var(--font-cursive);
   font-size: 2rem;
-  color: var(--color-gold-dark);
+  color: var(--color-gold-light);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   margin-bottom: -0.5rem;
 }
 
@@ -73,7 +75,8 @@ import seaWaves from '@/assets/images/sea-waves.png'
   font-family: var(--font-serif);
   font-size: 3rem;
   font-weight: 500;
-  color: var(--color-navy);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -89,7 +92,7 @@ import seaWaves from '@/assets/images/sea-waves.png'
   font-family: var(--font-serif);
   font-size: 0.9rem;
   font-style: italic;
-  color: var(--color-navy);
+  color: #fff;
   letter-spacing: 0.05em;
 }
 
@@ -97,7 +100,7 @@ import seaWaves from '@/assets/images/sea-waves.png'
   font-family: var(--font-sans);
   font-size: 0.6rem;
   letter-spacing: 0.3em;
-  color: var(--color-navy-light);
+  color: rgba(255, 255, 255, 0.7);
   margin-top: 0.5rem;
 }
 </style>

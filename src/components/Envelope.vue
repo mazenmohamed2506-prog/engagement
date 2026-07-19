@@ -1,52 +1,61 @@
 <template>
   <div v-if="!dismissed" class="envelope-screen" :class="{ 'envelope-screen--fading': isFading }">
-    <!-- Decorative particles -->
+    <!-- Floating sparkles across the screen -->
     <div class="envelope-screen__particles">
-      <span v-for="n in 20" :key="n" class="particle" :style="particleStyle(n)"></span>
+      <span v-for="n in 18" :key="n" class="particle" :style="particleStyle(n)">✦</span>
     </div>
 
-    <!-- Top decorative text -->
+    <!-- Top label -->
     <p class="envelope-screen__pretext" :class="{ 'animate-in': showElements }">
-      You have received an invitation
+      You Have Received An Invitation
     </p>
 
-    <!-- The Envelope -->
+    <!-- ═══ ENVELOPE ═══ -->
     <div class="envelope" :class="{ 'envelope--opened': isOpened }">
-      <!-- Envelope body (back) -->
-      <div class="envelope__body">
-        <div class="envelope__texture"></div>
+
+      <!-- BODY (cream rectangle) -->
+      <div class="envelope__body"></div>
+
+      <!-- Left fold triangle -->
+      <div class="envelope__fold-left"></div>
+      <!-- Right fold triangle (mirror of left) -->
+      <div class="envelope__fold-right"></div>
+
+      <!-- BOTTOM FLAP -->
+      <div class="envelope__bottom-flap"></div>
+
+      <!-- TOP FLAP (rotates open) -->
+      <div class="envelope__flap" :class="{ 'envelope__flap--open': isOpened }"></div>
+
+      <!-- Gold shimmer overlay on the envelope -->
+      <div class="envelope__shimmer"></div>
+
+      <!-- Sparkle dots on the envelope -->
+      <div class="envelope__sparkles">
+        <span v-for="s in 12" :key="'s'+s" class="sparkle-dot" :style="sparkleStyle(s)"></span>
       </div>
 
-      <!-- Top flap -->
-      <div class="envelope__flap" :class="{ 'envelope__flap--open': isOpened }">
-        <div class="envelope__flap-texture"></div>
-        <div class="envelope__flap-shadow"></div>
-      </div>
-
-      <!-- Inner invitation card -->
+      <!-- INNER CARD -->
       <div class="envelope__card" :class="{ 'envelope__card--revealed': isOpened }">
-        <div class="envelope__card-border">
+        <div class="envelope__card-inner">
           <img :src="floralFrame" alt="" class="envelope__card-frame" />
           <div class="envelope__card-content">
-            <p class="envelope__card-top">You Are Cordially Invited</p>
-            <p class="envelope__card-to">to the engagement of</p>
-            <h2 class="envelope__card-names">Omar & Mariyem</h2>
-            <div class="envelope__card-ornament">
-              <span class="ornament-line"></span>
-              <span class="ornament-diamond">◆</span>
-              <span class="ornament-line"></span>
+            <p class="envelope__card-eyebrow">You Are Cordially Invited</p>
+            <p class="envelope__card-subline">to the engagement of</p>
+            <h2 class="envelope__card-names">Omar &amp; Mariyem</h2>
+            <div class="envelope__card-divider">
+              <span class="div-line"></span>
+              <span class="div-gem">◆</span>
+              <span class="div-line"></span>
             </div>
             <p class="envelope__card-date">30 · 07 · 2026</p>
             <p class="envelope__card-day">Thursday Evening</p>
           </div>
         </div>
       </div>
-
-      <!-- Bottom flap (covers bottom of card) -->
-      <div class="envelope__bottom-flap"></div>
     </div>
 
-    <!-- Seal / Open Button -->
+    <!-- WAX SEAL -->
     <button
       v-if="!isOpened"
       class="envelope-screen__seal"
@@ -54,13 +63,11 @@
       @click="openEnvelope"
       aria-label="Open invitation"
     >
-      <div class="seal__inner">
-        <div class="seal__ring"></div>
-        <span class="seal__text">Open</span>
-      </div>
+      <div class="seal__ring"></div>
+      <span class="seal__monogram">♡</span>
+      <span class="seal__text">Open</span>
     </button>
 
-    <!-- Bottom text -->
     <p v-if="!isOpened" class="envelope-screen__hint" :class="{ 'animate-in': showElements }">
       Tap the seal to open
     </p>
@@ -86,33 +93,47 @@ onMounted(() => {
 function particleStyle(n) {
   const x = Math.random() * 100
   const y = Math.random() * 100
-  const size = 2 + Math.random() * 4
-  const delay = Math.random() * 5
-  const duration = 3 + Math.random() * 4
+  const size = 8 + Math.random() * 10
+  const delay = Math.random() * 6
+  const duration = 4 + Math.random() * 5
+  return {
+    left: `${x}%`,
+    top: `${y}%`,
+    fontSize: `${size}px`,
+    animationDelay: `${delay}s`,
+    animationDuration: `${duration}s`,
+  }
+}
+
+function sparkleStyle(s) {
+  // Distribute sparkles evenly across the envelope surface
+  const x = 10 + Math.random() * 80
+  const y = 10 + Math.random() * 80
+  const size = 3 + Math.random() * 5
+  const delay = Math.random() * 3
   return {
     left: `${x}%`,
     top: `${y}%`,
     width: `${size}px`,
     height: `${size}px`,
     animationDelay: `${delay}s`,
-    animationDuration: `${duration}s`,
   }
 }
 
 function openEnvelope() {
   isOpened.value = true
-
   setTimeout(() => {
     isFading.value = true
     setTimeout(() => {
       emit('opened')
       dismissed.value = true
     }, 800)
-  }, 2400)
+  }, 2500)
 }
 </script>
 
 <style scoped>
+/* ── Screen ── */
 .envelope-screen {
   position: fixed;
   inset: 0;
@@ -121,42 +142,42 @@ function openEnvelope() {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  background: linear-gradient(160deg, var(--color-warm-gray-dark), var(--color-ivory), var(--color-warm-gray));
+  gap: 2.5rem;
+  background:
+    radial-gradient(ellipse at 25% 20%, rgba(216, 196, 240, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 80%, rgba(246, 230, 200, 0.35) 0%, transparent 55%),
+    linear-gradient(160deg, #f8f3ff 0%, #fff8f0 50%, #f3f0ff 100%);
   overflow: hidden;
   transition: opacity 0.8s ease;
 }
-
 .envelope-screen--fading {
   opacity: 0;
   pointer-events: none;
 }
 
-/* ── Particles ── */
+/* ── Floating sparkles ── */
 .envelope-screen__particles {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
-
 .particle {
   position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.4), transparent);
-  animation: particleFloat var(--duration, 4s) ease-in-out infinite alternate;
+  color: rgba(201, 169, 110, 0.3);
+  animation: particleFloat var(--duration, 5s) ease-in-out infinite alternate;
+  user-select: none;
 }
-
 @keyframes particleFloat {
-  0% { opacity: 0; transform: translateY(0) scale(0.5); }
-  50% { opacity: 0.6; }
-  100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+  0%   { opacity: 0;   transform: translateY(0px) rotate(0deg) scale(0.5); }
+  50%  { opacity: 0.8; }
+  100% { opacity: 0;   transform: translateY(-50px) rotate(30deg) scale(1.2); }
 }
 
-/* ── Pre-text ── */
+/* ── Top label ── */
 .envelope-screen__pretext {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
-  letter-spacing: 0.4em;
+  font-size: 0.6rem;
+  letter-spacing: 0.45em;
   text-transform: uppercase;
   color: var(--color-navy-light);
   opacity: 0;
@@ -164,197 +185,217 @@ function openEnvelope() {
   transition: all 0.8s ease 0.2s;
   text-align: center;
 }
-
 .envelope-screen__pretext.animate-in {
-  opacity: 0.8;
+  opacity: 0.75;
   transform: translateY(0);
 }
 
-/* ── Envelope ── */
+/* ══════════════════════════════════
+   ENVELOPE
+   ══════════════════════════════════ */
 .envelope {
   position: relative;
   width: 300px;
-  height: 400px;
-  perspective: 800px;
+  height: 220px;
+  perspective: 1200px;
+  filter: drop-shadow(0 20px 40px rgba(80,60,120,0.18)) drop-shadow(0 4px 8px rgba(80,60,120,0.10));
 }
 
-/* Envelope body */
+/* ── Body (cream rectangle background) ── */
 .envelope__body {
   position: absolute;
   inset: 0;
-  background: linear-gradient(165deg, var(--color-navy-light), var(--color-navy), var(--color-navy-dark));
   border-radius: 6px;
-  box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.15),
-    0 10px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  background: linear-gradient(170deg, #faf5ff 0%, #fdf8ef 50%, #faf5ff 100%);
+  border: 1.5px solid rgba(201,169,110,0.35);
 }
-
-.envelope__texture {
-  position: absolute;
-  inset: 0;
-  background-image: url('@/assets/images/envelope-bg.png');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.9;
-}
-
-/* Gold border trim */
-.envelope__body::before {
+/* Inner gold border */
+.envelope__body::after {
   content: '';
   position: absolute;
-  inset: 8px;
-  border: 1px solid rgba(201, 169, 110, 0.4);
-  border-radius: 4px;
+  inset: 6px;
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 3px;
   pointer-events: none;
 }
 
-/* Top flap */
+/* ── Fold triangles (LEFT & RIGHT — perfectly mirrored) ── */
+.envelope__fold-left,
+.envelope__fold-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  z-index: 2;
+}
+.envelope__fold-left {
+  left: 0;
+}
+.envelope__fold-right {
+  right: 0;
+}
+/* Left triangle: bottom-left corner → top-right → bottom-right (fills bottom-left half) */
+.envelope__fold-left::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(220, 205, 245, 0.4);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+/* Right triangle: mirror of left */
+.envelope__fold-right::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(220, 205, 245, 0.4);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+/* ── TOP FLAP (triangle pointing down) ── */
 .envelope__flap {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 200px;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 115px solid #ede6fa;
   z-index: 20;
   transform-origin: top center;
   transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 4px 6px rgba(100,80,140,0.12));
 }
-
+/* Subtle gold sheen on flap */
 .envelope__flap::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background: linear-gradient(180deg, var(--color-navy-light), var(--color-navy));
+  top: -115px;
+  left: -150px;
+  right: -150px;
+  height: 115px;
+  background: linear-gradient(to bottom, rgba(201,169,110,0.12), transparent);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.envelope__flap-texture {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  background-image: url('@/assets/images/envelope-bg.png');
-  background-size: cover;
-  background-position: top center;
-  opacity: 0.9;
-}
-
-/* Gold edge on flap */
-.envelope__flap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  border: 1.5px solid rgba(201, 169, 110, 0.3);
   pointer-events: none;
 }
-
 .envelope__flap--open {
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
 }
 
-.envelope__flap-shadow {
-  position: absolute;
-  bottom: -20px;
-  left: 10%;
-  right: 10%;
-  height: 20px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
-  transition: opacity 0.5s ease;
-}
-
-.envelope__flap--open .envelope__flap-shadow {
-  opacity: 0;
-}
-
-/* Bottom flap */
+/* ── BOTTOM FLAP (triangle pointing up) ── */
 .envelope__bottom-flap {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 180px;
-  background: linear-gradient(0deg, var(--color-navy-dark), var(--color-navy));
-  clip-path: polygon(0 100%, 100% 100%, 50% 0);
-  z-index: 6;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 105px solid #e8ddf7;
+  z-index: 8;
 }
 
-.envelope__bottom-flap::before {
-  content: '';
+/* ── SHIMMER — sweeping gold light across the envelope ── */
+.envelope__shimmer {
   position: absolute;
   inset: 0;
-  background-image: url('@/assets/images/envelope-bg.png');
-  background-size: cover;
-  background-position: bottom center;
-  opacity: 0.9;
-  clip-path: polygon(0 100%, 100% 100%, 50% 0);
+  z-index: 15;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 6px;
 }
-
-.envelope__bottom-flap::after {
+.envelope__shimmer::before {
   content: '';
   position: absolute;
-  inset: 0;
-  clip-path: polygon(0 100%, 100% 100%, 50% 0);
-  border: 1.5px solid rgba(201, 169, 110, 0.2);
+  top: -50%;
+  left: -100%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 223, 130, 0.15) 45%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 223, 130, 0.15) 55%,
+    transparent 70%
+  );
+  animation: shimmerSweep 4s ease-in-out infinite;
+}
+@keyframes shimmerSweep {
+  0%   { left: -100%; }
+  100% { left: 200%; }
 }
 
-/* ── Inner Card ── */
+/* ── SPARKLE DOTS — small golden dots that twinkle ── */
+.envelope__sparkles {
+  position: absolute;
+  inset: 0;
+  z-index: 16;
+  pointer-events: none;
+}
+.sparkle-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 100, 0.9), rgba(255, 215, 100, 0) 70%);
+  animation: twinkle 2s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.3); }
+  50%      { opacity: 1; transform: scale(1); }
+}
+
+/* ── INNER CARD ── */
 .envelope__card {
   position: absolute;
-  top: 30px;
-  left: 20px;
-  right: 20px;
-  bottom: 30px;
+  top: 10px;
+  left: 16px;
+  right: 16px;
+  bottom: 10px;
   z-index: 5;
-  transform: translateY(0) scale(0.85);
+  transform: translateY(15px) scale(0.88);
   opacity: 0;
   transition:
-    transform 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s,
-    opacity 0.6s ease 0.8s,
-    z-index 0s linear 0.8s;
+    transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s,
+    opacity 0.7s ease 0.9s;
 }
-
 .envelope__card--revealed {
-  transform: translateY(-120px) scale(1.05);
+  transform: translateY(-160px) scale(1.05);
   opacity: 1;
   z-index: 30;
 }
 
-.envelope__card-border {
+.envelope__card-inner {
   width: 100%;
   height: 100%;
-  background: linear-gradient(170deg, #fffef9, #faf7f0, #f5f0e5);
-  border-radius: 8px;
-  padding: 1rem;
+  background: linear-gradient(170deg, #fffef9 0%, #fdf8ef 60%, #f9f4fe 100%);
+  border-radius: 6px;
+  border: 1.5px solid rgba(201,169,110,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.3),
-    0 5px 15px rgba(0, 0, 0, 0.15),
-    inset 0 0 0 1px rgba(201, 169, 110, 0.3);
   overflow: hidden;
+  box-shadow:
+    0 12px 40px rgba(80,60,120,0.2),
+    0 3px 10px rgba(80,60,120,0.1),
+    inset 0 0 0 1px rgba(255,255,255,0.8);
 }
 
 .envelope__card-frame {
   position: absolute;
-  inset: 5px;
-  width: calc(100% - 10px);
-  height: calc(100% - 10px);
+  inset: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
   object-fit: contain;
-  opacity: 0.4;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -362,148 +403,138 @@ function openEnvelope() {
   text-align: center;
   position: relative;
   z-index: 2;
+  padding: 0.5rem;
 }
 
-.envelope__card-top {
+.envelope__card-eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--color-gold-dark);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
-
-.envelope__card-to {
+.envelope__card-subline {
   font-family: var(--font-serif);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-style: italic;
   color: var(--color-navy-light);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
-
 .envelope__card-names {
   font-family: var(--font-cursive);
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: var(--color-navy);
   line-height: 1.2;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 1px 2px rgba(26, 39, 68, 0.1);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 1px 2px rgba(60,40,90,0.08);
 }
-
-.envelope__card-ornament {
+.envelope__card-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
 }
-
-.ornament-line {
-  width: 35px;
+.div-line {
+  width: 30px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
 }
-
-.ornament-diamond {
-  font-size: 0.45rem;
+.div-gem {
+  font-size: 0.4rem;
   color: var(--color-gold);
 }
-
 .envelope__card-date {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--color-navy);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
 }
-
 .envelope__card-day {
   font-family: var(--font-sans);
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-gold-dark);
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
 }
 
-/* ── Seal Button ── */
+/* ── WAX SEAL ── */
 .envelope-screen__seal {
   position: relative;
   z-index: 100;
-  width: 80px;
-  height: 80px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   border: none;
   background: radial-gradient(ellipse at 35% 30%,
-    #e8c97a,
-    #c9a96e 40%,
-    #a8894e 70%,
-    #8a6d3b
+    #f0d888 0%,
+    #c9a96e 45%,
+    #a07840 75%,
+    #7a5a28 100%
   );
   cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
   box-shadow:
-    0 4px 20px rgba(201, 169, 110, 0.4),
-    0 8px 40px rgba(0, 0, 0, 0.3),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    0 4px 20px rgba(160,120,60,0.5),
+    0 8px 35px rgba(0,0,0,0.25),
+    inset 0 -3px 5px rgba(0,0,0,0.25),
+    inset 0 3px 5px rgba(255,255,255,0.35);
   opacity: 0;
   transform: translateY(10px) scale(0.9);
-  transition: all 0.8s ease 0.6s;
-  margin-top: -1rem;
-}
-
-.envelope-screen__seal.animate-in {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.envelope-screen__seal:hover {
-  transform: scale(1.12) !important;
-  box-shadow:
-    0 6px 30px rgba(201, 169, 110, 0.6),
-    0 12px 50px rgba(0, 0, 0, 0.3),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3);
-}
-
-.seal__inner {
-  width: 100%;
-  height: 100%;
+  transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
+  gap: 2px;
+  margin-top: -0.5rem;
 }
-
+.envelope-screen__seal.animate-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.envelope-screen__seal:hover {
+  transform: scale(1.1) !important;
+  box-shadow:
+    0 6px 28px rgba(160,120,60,0.65),
+    0 12px 45px rgba(0,0,0,0.3),
+    inset 0 -3px 5px rgba(0,0,0,0.25),
+    inset 0 3px 5px rgba(255,255,255,0.35);
+}
 .seal__ring {
   position: absolute;
-  inset: 6px;
+  inset: 7px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  pointer-events: none;
 }
-
+.seal__monogram {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1;
+  margin-top: -4px;
+}
 .seal__text {
   font-family: var(--font-serif);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-navy-dark);
-  letter-spacing: 0.15em;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-/* ── Hint Text ── */
+/* ── Hint ── */
 .envelope-screen__hint {
   font-family: var(--font-sans);
   font-size: 0.6rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(201, 169, 110, 0.4);
+  color: rgba(160,130,200,0.6);
   opacity: 0;
   transform: translateY(5px);
   transition: all 0.6s ease 1s;
 }
-
 .envelope-screen__hint.animate-in {
   opacity: 1;
   transform: translateY(0);
@@ -511,13 +542,23 @@ function openEnvelope() {
 
 /* ── Responsive ── */
 @media (max-width: 360px) {
-  .envelope {
-    width: 260px;
-    height: 350px;
+  .envelope { width: 260px; height: 190px; }
+  .envelope__flap {
+    border-left-width: 130px;
+    border-right-width: 130px;
+    border-top-width: 100px;
   }
-
-  .envelope__card-names {
-    font-size: 1.8rem;
+  .envelope__flap::before {
+    top: -100px;
+    left: -130px;
+    right: -130px;
+    height: 100px;
   }
+  .envelope__bottom-flap {
+    border-left-width: 130px;
+    border-right-width: 130px;
+    border-bottom-width: 92px;
+  }
+  .envelope__card-names { font-size: 1.7rem; }
 }
 </style>

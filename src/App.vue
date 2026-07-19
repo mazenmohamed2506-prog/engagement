@@ -18,7 +18,7 @@
           <SaveTheDate />
           <Agenda />
           <VenueAndRules />
-          <RSVP />
+          <!-- <RSVP /> -->
 
           <!-- Footer -->
           <footer class="app__footer">
@@ -48,7 +48,7 @@ import Countdown from '@/components/Countdown.vue'
 import SaveTheDate from '@/components/SaveTheDate.vue'
 import Agenda from '@/components/Agenda.vue'
 import VenueAndRules from '@/components/VenueAndRules.vue'
-import RSVP from '@/components/RSVP.vue'
+// import RSVP from '@/components/RSVP.vue'
 
 const showPreloader = ref(true)
 const showEnvelope = ref(false)
