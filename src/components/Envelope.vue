@@ -42,7 +42,7 @@
           <div class="envelope__card-content">
             <p class="envelope__card-eyebrow">You Are Cordially Invited</p>
             <p class="envelope__card-subline">to the engagement of</p>
-            <h2 class="envelope__card-names">Omar &amp; Mariyem</h2>
+            <h2 class="envelope__card-names">Omar &amp; Maryam</h2>
             <div class="envelope__card-divider">
               <span class="div-line"></span>
               <span class="div-gem">◆</span>

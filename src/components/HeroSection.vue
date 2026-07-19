@@ -14,7 +14,7 @@
       </p>
 
       <h1 class="hero__names" :class="{ 'hero__animate': animate }" style="--delay: 0.6s">
-        Omar <span class="hero__amp">&</span> Mariyem
+        Omar <span class="hero__amp">&</span> Maryam
       </h1>
 
       <div class="hero__ornament" :class="{ 'hero__animate': animate }" style="--delay: 1s">

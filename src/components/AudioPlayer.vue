@@ -33,10 +33,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 let audio = null
 const isPlaying = ref(false)
+
+function handleVisibilityChange() {
+  if (!audio) return
+  if (document.hidden) {
+    // User left the tab / minimized — pause the music
+    audio.pause()
+  } else {
+    // User came back — resume if it was playing
+    if (isPlaying.value) {
+      audio.play().catch(() => {})
+    }
+  }
+}
 
 onMounted(() => {
   audio = new Audio('/music/audiomass-output.mp3')
@@ -50,6 +63,19 @@ onMounted(() => {
     // Autoplay was blocked (e.g., strict browser policies)
     console.warn("Autoplay blocked:", e)
   })
+
+  // Listen for tab visibility changes
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+})
+
+onBeforeUnmount(() => {
+  // Stop and clean up audio when component is destroyed
+  if (audio) {
+    audio.pause()
+    audio.src = ''
+    audio = null
+  }
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
 })
 
 function toggleAudio() {
