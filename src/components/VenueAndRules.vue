@@ -19,8 +19,8 @@
             <div class="flip-card__arch">
               <img :src="venueImg" alt="Wedding venue" class="flip-card__image" />
               <div class="flip-card__overlay">
-                <p class="flip-card__venue-name">Seaside Terrace</p>
-                <p class="flip-card__venue-location">Alexandria, Egypt</p>
+                <p class="flip-card__venue-name">Refaat Hassan Street</p>
+                <p class="flip-card__venue-location">Mokattam City, Cairo</p>
               </div>
             </div>
             <p class="flip-card__hint">Tap to see location</p>

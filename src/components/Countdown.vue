@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <p class="countdown__date-label">August 2, 2026</p>
+      <p class="countdown__date-label">July 30, 2026</p>
     </div>
   </section>
 </template>
@@ -40,7 +40,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const targetDate = new Date('2026-08-02T16:00:00').getTime()
+const targetDate = new Date('2026-07-30T19:00:00').getTime()
 
 const days = ref('00')
 const hours = ref('00')

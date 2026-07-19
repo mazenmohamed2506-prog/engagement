@@ -14,9 +14,9 @@
     <div class="envelope__card" :class="{ 'envelope__card--revealed': isOpened }">
       <div class="envelope__card-inner">
         <p class="envelope__card-top">You Are Invited</p>
-        <h2 class="envelope__card-names">Omar & Yasmine</h2>
+        <h2 class="envelope__card-names">Omar & Mariyem</h2>
         <div class="envelope__card-divider"></div>
-        <p class="envelope__card-date">02 · 08 · 2026</p>
+        <p class="envelope__card-date">30 · 07 · 2026</p>
       </div>
     </div>
 

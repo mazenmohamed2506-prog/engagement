@@ -7,17 +7,17 @@
       </p>
 
       <h1 class="hero__names" :class="{ 'hero__animate': animate }" style="--delay: 0.6s">
-        Omar <span class="hero__amp">&</span> Yasmine
+        Omar <span class="hero__amp">&</span> Mariyem
       </h1>
 
       <div class="hero__divider" :class="{ 'hero__animate': animate }" style="--delay: 1s"></div>
 
       <p class="hero__date" :class="{ 'hero__animate': animate }" style="--delay: 1.2s">
-        02 &nbsp;|&nbsp; 08 &nbsp;|&nbsp; 2026
+        30 &nbsp;|&nbsp; 07 &nbsp;|&nbsp; 2026
       </p>
 
       <p class="hero__venue-hint" :class="{ 'hero__animate': animate }" style="--delay: 1.5s">
-        Request the honour of your presence
+        Request the honour of your presence at our engagement
       </p>
     </div>
 

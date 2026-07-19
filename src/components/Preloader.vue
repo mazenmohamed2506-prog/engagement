@@ -5,7 +5,7 @@
         <div class="preloader__initials">
           <span class="preloader__letter">O</span>
           <span class="preloader__ampersand">&</span>
-          <span class="preloader__letter">Y</span>
+          <span class="preloader__letter">M</span>
         </div>
         <div class="preloader__line"></div>
         <p class="preloader__tagline">We invite you to celebrate</p>

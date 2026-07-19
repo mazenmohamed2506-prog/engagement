@@ -8,7 +8,7 @@
           <p class="save-the-date__the">the</p>
           <p class="save-the-date__date-text">Date</p>
           <div class="save-the-date__line"></div>
-          <p class="save-the-date__full-date">Sunday, August 2nd</p>
+          <p class="save-the-date__full-date">Thursday, July 30th</p>
           <p class="save-the-date__year">2026</p>
         </div>
       </div>
