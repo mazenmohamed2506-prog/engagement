@@ -1,38 +1,46 @@
 <template>
   <section class="countdown" id="countdown">
     <div class="countdown__inner">
-      <h2 class="countdown__heading">Counting the Moments</h2>
+      <p class="countdown__pre">We're counting down to</p>
+      <h2 class="countdown__heading">Our Special Day</h2>
 
-      <!-- SVG Divider -->
-      <svg class="countdown__divider" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 10 Q25 0 50 10 Q75 20 100 10 Q125 0 150 10 Q175 20 200 10" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
-        <circle cx="100" cy="10" r="3" fill="currentColor" opacity="0.6"/>
-        <line x1="60" y1="10" x2="85" y2="10" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        <line x1="115" y1="10" x2="140" y2="10" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-      </svg>
+      <!-- Ornamental divider -->
+      <div class="countdown__ornament">
+        <span class="countdown__orn-line"></span>
+        <svg class="countdown__orn-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span class="countdown__orn-line"></span>
+      </div>
 
       <div class="countdown__timer">
         <div class="countdown__block">
-          <span class="countdown__number">{{ days }}</span>
+          <div class="countdown__number-wrap">
+            <span class="countdown__number">{{ days }}</span>
+          </div>
           <span class="countdown__label">Days</span>
         </div>
 
-        <span class="countdown__separator">:</span>
+        <span class="countdown__separator">·</span>
 
         <div class="countdown__block">
-          <span class="countdown__number">{{ hours }}</span>
+          <div class="countdown__number-wrap">
+            <span class="countdown__number">{{ hours }}</span>
+          </div>
           <span class="countdown__label">Hours</span>
         </div>
 
-        <span class="countdown__separator">:</span>
+        <span class="countdown__separator">·</span>
 
         <div class="countdown__block">
-          <span class="countdown__number">{{ minutes }}</span>
+          <div class="countdown__number-wrap">
+            <span class="countdown__number">{{ minutes }}</span>
+          </div>
           <span class="countdown__label">Minutes</span>
         </div>
       </div>
 
-      <p class="countdown__date-label">July 30, 2026</p>
+      <p class="countdown__date-label">Thursday, July 30, 2026</p>
     </div>
   </section>
 </template>
@@ -84,8 +92,9 @@ onUnmounted(() => {
 
 <style scoped>
 .countdown {
-  background: var(--color-ivory);
-  padding: 4rem 1.5rem;
+  background: linear-gradient(180deg, var(--color-ivory), var(--color-ivory-dark));
+  padding: 4.5rem 1.5rem;
+  position: relative;
 }
 
 .countdown__inner {
@@ -94,38 +103,81 @@ onUnmounted(() => {
   margin: 0 auto;
 }
 
+.countdown__pre {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 0.5rem;
+}
+
 .countdown__heading {
   font-family: var(--font-serif);
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 500;
   color: var(--color-navy);
-  margin-bottom: 0.75rem;
 }
 
-.countdown__divider {
-  width: 140px;
-  height: 20px;
-  margin: 0 auto 2.5rem;
+/* Ornament */
+.countdown__ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0 2.5rem;
+}
+
+.countdown__orn-line {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.countdown__orn-icon {
   color: var(--color-gold);
+  flex-shrink: 0;
 }
 
+/* Timer */
 .countdown__timer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .countdown__block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 70px;
-  padding: 1rem 0.75rem;
+}
+
+.countdown__number-wrap {
+  width: 75px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(26, 39, 68, 0.08);
-  border: 1px solid var(--color-warm-gray);
+  box-shadow:
+    0 4px 20px rgba(26, 39, 68, 0.06),
+    0 1px 3px rgba(26, 39, 68, 0.04);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  position: relative;
+}
+
+/* Subtle gold top accent */
+.countdown__number-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  border-radius: 0 0 2px 2px;
 }
 
 .countdown__number {
@@ -138,18 +190,17 @@ onUnmounted(() => {
 
 .countdown__label {
   font-family: var(--font-sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--color-gold-dark);
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
 .countdown__separator {
-  font-family: var(--font-serif);
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--color-gold);
-  margin-top: -1rem;
+  margin-top: -1.5rem;
 }
 
 .countdown__date-label {
@@ -157,7 +208,7 @@ onUnmounted(() => {
   font-style: italic;
   font-size: 0.9rem;
   color: var(--color-navy-light);
-  margin-top: 2rem;
-  opacity: 0.7;
+  margin-top: 2.5rem;
+  opacity: 0.6;
 }
 </style>

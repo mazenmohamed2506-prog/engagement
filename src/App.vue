@@ -117,7 +117,7 @@ function onEnvelopeOpened() {
 /* Footer */
 .app__footer {
   padding: 3rem 1.5rem;
-  background: var(--color-navy-dark);
+  background: var(--color-ivory-dark);
   text-align: center;
 }
 
@@ -129,13 +129,13 @@ function onEnvelopeOpened() {
 .app__footer-names {
   font-family: var(--font-cursive);
   font-size: 2rem;
-  color: var(--color-ivory);
+  color: var(--color-navy);
 }
 
 .app__footer-date {
   font-family: var(--font-serif);
   font-size: 0.85rem;
-  color: var(--color-gold-light);
+  color: var(--color-navy-light);
   letter-spacing: 0.15em;
   margin-top: 0.5rem;
 }

@@ -105,17 +105,11 @@ const events = [
     icon: UtensilsIcon,
   },
   {
-    time: '10:00 PM',
+    time: '9:15 PM',
     title: 'Celebration & Dancing',
     description: 'Celebrate the night with music and joy',
     icon: MusicIcon,
-  },
-  {
-    time: '12:00 AM',
-    title: 'Farewell',
-    description: 'A warm farewell to end a magical evening',
-    icon: SparkleIcon,
-  },
+  }
 ]
 
 const cardRefs = ref([])
@@ -156,7 +150,7 @@ onUnmounted(() => {
 <style scoped>
 .agenda {
   padding: 4rem 1.5rem;
-  background: var(--color-ivory);
+  background: var(--color-warm-gray);
 }
 
 .agenda__inner {
@@ -192,10 +186,10 @@ onUnmounted(() => {
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem;
-  background: var(--color-ivory-dark);
+  background: var(--color-ivory);
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(26, 39, 68, 0.06);
-  border: 1px solid var(--color-warm-gray);
+  box-shadow: 0 2px 12px rgba(75, 61, 91, 0.05);
+  border: 1px solid var(--color-warm-gray-dark);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -213,8 +207,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-navy);
-  color: var(--color-gold);
+  background: var(--color-ivory-dark);
+  color: var(--color-gold-dark);
   border-radius: 50%;
   padding: 8px;
 }

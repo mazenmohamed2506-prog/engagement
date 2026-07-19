@@ -2,16 +2,16 @@
 
 /* ── Custom Theme ── */
 @theme {
-  --color-navy: #1a2744;
-  --color-navy-light: #243356;
-  --color-navy-dark: #111b30;
-  --color-ivory: #faf8f5;
-  --color-ivory-dark: #f0ece5;
-  --color-gold: #c9a96e;
-  --color-gold-light: #dcc493;
-  --color-gold-dark: #a8894e;
-  --color-warm-gray: #e8e4de;
-  --color-warm-gray-dark: #d4cfc7;
+  --color-navy: #4b3d5b; /* Text color - deep lavender-gray */
+  --color-navy-light: #89789e; /* Medium lavender */
+  --color-navy-dark: #312541; /* Dark deep purple */
+  --color-ivory: #fffbf7; /* Cream / off-white */
+  --color-ivory-dark: #f6eef2; /* Soft tinted cream */
+  --color-gold: #cfa86e; /* Subtle gold */
+  --color-gold-light: #e6c891;
+  --color-gold-dark: #a6844d;
+  --color-warm-gray: #fbf8fc; /* Page background */
+  --color-warm-gray-dark: #f0e6f3;
   --color-whatsapp: #25d366;
 
   --font-serif: 'Playfair Display', 'Georgia', serif;

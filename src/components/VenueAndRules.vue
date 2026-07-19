@@ -39,36 +39,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Rules Section -->
-      <h2 class="venue-rules__heading venue-rules__heading--rules">Kind Reminders</h2>
-
-      <div class="rules">
-        <div class="rules__card">
-          <div class="rules__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
-          </div>
-          <h3 class="rules__title">Dress Code</h3>
-          <p class="rules__desc">Formal Elegant Attire<br/><span class="rules__subdesc">Ladies: long dresses preferred<br/>Gentlemen: suit & tie</span></p>
-        </div>
-
-        <div class="rules__card">
-          <div class="rules__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <h3 class="rules__title">Adults Only</h3>
-          <p class="rules__desc">We kindly request that this<br/>celebration be an adults-only event</p>
-        </div>
-      </div>
     </div>
   </section>
 </template>
@@ -165,7 +135,7 @@ const isFlipped = ref(false)
   left: 0;
   right: 0;
   padding: 2rem 1.5rem;
-  background: linear-gradient(to top, rgba(26, 39, 68, 0.8), transparent);
+  background: linear-gradient(to top, rgba(255, 251, 247, 0.9), rgba(255, 251, 247, 0.4) 60%, transparent);
   text-align: center;
 }
 
@@ -173,7 +143,7 @@ const isFlipped = ref(false)
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 500;
-  color: #fff;
+  color: var(--color-navy);
 }
 
 .flip-card__venue-location {
@@ -181,7 +151,7 @@ const isFlipped = ref(false)
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold-light);
+  color: var(--color-navy-light);
   margin-top: 0.25rem;
 }
 
@@ -203,7 +173,7 @@ const isFlipped = ref(false)
 /* Back face */
 .flip-card__back {
   transform: rotateY(180deg);
-  background: linear-gradient(160deg, var(--color-navy), var(--color-navy-dark));
+  background: linear-gradient(160deg, var(--color-warm-gray-dark), var(--color-ivory));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -223,7 +193,7 @@ const isFlipped = ref(false)
 .flip-card__qr-title {
   font-family: var(--font-serif);
   font-size: 1.1rem;
-  color: var(--color-ivory);
+  color: var(--color-navy);
   margin-bottom: 1.5rem;
 }
 
@@ -246,7 +216,7 @@ const isFlipped = ref(false)
   font-family: var(--font-sans);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: var(--color-gold-light);
+  color: var(--color-navy-light);
   margin-top: 1.25rem;
   opacity: 0.7;
 }

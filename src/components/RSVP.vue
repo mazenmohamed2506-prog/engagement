@@ -76,7 +76,7 @@ function handleSubmit() {
 <style scoped>
 .rsvp {
   padding: 4rem 1.5rem;
-  background: var(--color-navy);
+  background: var(--color-warm-gray-dark);
 }
 
 .rsvp__inner {
@@ -89,7 +89,7 @@ function handleSubmit() {
   font-family: var(--font-serif);
   font-size: 1.75rem;
   font-weight: 500;
-  color: var(--color-ivory);
+  color: var(--color-navy);
   letter-spacing: 0.1em;
 }
 
@@ -97,7 +97,7 @@ function handleSubmit() {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
-  color: var(--color-gold-light);
+  color: var(--color-navy-light);
   margin-top: 0.5rem;
 }
 
@@ -127,16 +127,16 @@ function handleSubmit() {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold-light);
+  color: var(--color-navy);
 }
 
 .rsvp__input {
   width: 100%;
   padding: 0.85rem 1rem;
-  background: var(--color-navy-light);
-  border: 1.5px solid rgba(201, 169, 110, 0.2);
+  background: var(--color-ivory);
+  border: 1.5px solid rgba(75, 61, 91, 0.15);
   border-radius: 8px;
-  color: var(--color-ivory);
+  color: var(--color-navy);
   font-family: var(--font-sans);
   font-size: 0.9rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -144,7 +144,7 @@ function handleSubmit() {
 }
 
 .rsvp__input::placeholder {
-  color: rgba(250, 248, 245, 0.3);
+  color: rgba(75, 61, 91, 0.4);
 }
 
 .rsvp__input:focus {
@@ -161,8 +161,8 @@ function handleSubmit() {
 }
 
 .rsvp__select option {
-  background: var(--color-navy);
-  color: var(--color-ivory);
+  background: var(--color-ivory);
+  color: var(--color-navy);
 }
 
 .rsvp__submit {
@@ -172,22 +172,24 @@ function handleSubmit() {
   gap: 0.5rem;
   width: 100%;
   padding: 1rem;
-  margin-top: 0.5rem;
-  background: var(--color-whatsapp);
-  color: #fff;
+  margin-top: 0.75rem;
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light));
+  color: var(--color-navy-dark);
   border: none;
   border-radius: 8px;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(201, 169, 110, 0.25);
 }
 
 .rsvp__submit:hover:not(:disabled) {
-  background: #1fb855;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(201, 169, 110, 0.4);
 }
 
 .rsvp__submit:active:not(:disabled) {
@@ -195,7 +197,7 @@ function handleSubmit() {
 }
 
 .rsvp__submit:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
