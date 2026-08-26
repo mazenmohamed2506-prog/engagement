@@ -9,13 +9,13 @@
 
       <div class="preloader__content">
         <div class="preloader__initials">
-          <span class="preloader__letter preloader__letter--first">O</span>
+          <span class="preloader__letter preloader__letter--first">M</span>
           <span class="preloader__ampersand">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
             </svg>
           </span>
-          <span class="preloader__letter preloader__letter--second">M</span>
+          <span class="preloader__letter preloader__letter--second">A</span>
         </div>
         <div class="preloader__ornament">
           <span class="preloader__orn-line"></span>
@@ -62,7 +62,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, var(--color-ivory), #f7eff9, var(--color-ivory-dark));
+  background: linear-gradient(160deg, var(--color-warm-gray), var(--color-warm-gray-dark), var(--color-ivory));
   overflow: hidden;
 }
 
@@ -71,7 +71,7 @@ onMounted(() => {
   position: absolute;
   width: 60px;
   height: 60px;
-  border-color: rgba(201, 169, 110, 0.4);
+  border-color: rgba(196, 164, 155, 0.4);
   border-style: solid;
 }
 
@@ -98,7 +98,7 @@ onMounted(() => {
   font-weight: 600;
   color: var(--color-navy);
   letter-spacing: 0.05em;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  text-shadow: 0 2px 20px rgba(74, 20, 26, 0.08);
 }
 
 .preloader__letter--first {
@@ -159,7 +159,7 @@ onMounted(() => {
 .preloader__loading {
   width: 120px;
   height: 1px;
-  background: rgba(201, 169, 110, 0.25);
+  background: rgba(196, 164, 155, 0.3);
   margin: 2rem auto 0;
   border-radius: 2px;
   overflow: hidden;
@@ -171,7 +171,7 @@ onMounted(() => {
 .preloader__loading-bar {
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light));
+  background: linear-gradient(90deg, var(--color-navy-dark), var(--color-gold), var(--color-gold-light));
   border-radius: 2px;
   animation: loadProgress 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   animation-delay: 0.5s;

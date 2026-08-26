@@ -23,8 +23,8 @@
           <!-- Footer -->
           <footer class="app__footer">
             <div class="app__footer-inner">
-              <p class="app__footer-names">Omar & Maryam</p>
-              <p class="app__footer-date">30 · 07 · 2026</p>
+              <p class="app__footer-names">Mohamed & Asmaa</p>
+              <p class="app__footer-date">26 · 09 · 2026</p>
               <div class="app__footer-line"></div>
               <p class="app__footer-note">Made with love</p>
             </div>
@@ -83,10 +83,10 @@ function onEnvelopeOpened() {
     position: fixed;
     inset: 0;
     z-index: -1;
-    background-color: var(--color-navy-dark);
+    background-color: var(--color-navy);
     background-image:
-      radial-gradient(circle at 20% 50%, rgba(201, 169, 110, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 50%, rgba(201, 169, 110, 0.03) 0%, transparent 50%);
+      radial-gradient(circle at 20% 50%, rgba(196, 164, 155, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(196, 164, 155, 0.08) 0%, transparent 50%);
   }
 }
 

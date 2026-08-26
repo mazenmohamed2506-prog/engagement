@@ -103,23 +103,23 @@ function toggleAudio() {
   border-radius: 50%;
   border: 1.5px solid var(--color-gold);
   background: var(--color-navy);
-  color: var(--color-gold);
+  color: var(--color-ivory);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(26, 39, 68, 0.4);
+  box-shadow: 0 4px 20px rgba(74, 20, 26, 0.4);
 }
 
 .audio-fab:hover {
-  background: var(--color-navy-light);
+  background: var(--color-navy-dark);
   transform: scale(1.1);
 }
 
 .audio-fab.is-playing {
   border-color: var(--color-gold-light);
-  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+  box-shadow: 0 4px 20px rgba(196, 164, 155, 0.4);
 }
 
 .audio-fab__icon {

@@ -1,52 +1,60 @@
 <template>
   <section class="hero" id="hero">
-    <div class="hero__overlay"></div>
-    <div class="hero__vignette"></div>
+    <!-- Top & bottom lighting gradients to preserve photo faces clearly -->
+    <div class="hero__overlay-top"></div>
+    <div class="hero__overlay-bottom"></div>
 
-    <!-- Decorative top border -->
-    <div class="hero__top-decor">
-      <span class="hero__decor-line"></span>
-    </div>
+    <!-- Top header: positioned above the faces -->
+    <div class="hero__header">
+      <div class="hero__top-decor" :class="{ 'hero__animate': animate }" style="--delay: 0.1s">
+        <span class="hero__decor-line"></span>
+        <span class="hero__decor-diamond">✦</span>
+        <span class="hero__decor-line"></span>
+      </div>
 
-    <div class="hero__content">
-      <p class="hero__families" :class="{ 'hero__animate': animate }" style="--delay: 0.2s">
+      <p class="hero__families" :class="{ 'hero__animate': animate }" style="--delay: 0.3s">
         Together with their families
       </p>
+    </div>
 
-      <h1 class="hero__names" :class="{ 'hero__animate': animate }" style="--delay: 0.6s">
-        Omar <span class="hero__amp">&</span> Maryam
-      </h1>
+    <!-- Bottom content: positioned below faces over natural dress/suit area -->
+    <div class="hero__footer">
+      <div class="hero__names-wrap" :class="{ 'hero__animate': animate }" style="--delay: 0.6s">
+        <h1 class="hero__names">
+          Mohamed <span class="hero__amp">&</span> Asmaa
+        </h1>
+      </div>
 
-      <div class="hero__ornament" :class="{ 'hero__animate': animate }" style="--delay: 1s">
+      <div class="hero__ornament" :class="{ 'hero__animate': animate }" style="--delay: 0.8s">
         <span class="hero__orn-line"></span>
         <span class="hero__orn-diamond">◆</span>
         <span class="hero__orn-line"></span>
       </div>
 
-      <p class="hero__date" :class="{ 'hero__animate': animate }" style="--delay: 1.2s">
-        30 &nbsp;|&nbsp; 07 &nbsp;|&nbsp; 2026
+      <p class="hero__date" :class="{ 'hero__animate': animate }" style="--delay: 1s">
+        26 &nbsp;|&nbsp; 09 &nbsp;|&nbsp; 2026
       </p>
 
-      <p class="hero__venue-hint" :class="{ 'hero__animate': animate }" style="--delay: 1.5s">
-        Request the honour of your presence at our engagement
+      <p class="hero__venue-hint" :class="{ 'hero__animate': animate }" style="--delay: 1.2s">
+        Request the honour of your presence at our wedding
       </p>
+
+      <div class="hero__scroll-hint" :class="{ 'hero__animate': animate }" style="--delay: 1.5s">
+        <span>Scroll Down</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
     </div>
 
-    <div class="hero__scroll-hint" :class="{ 'hero__animate': animate }" style="--delay: 2s">
-      <span>Scroll Down</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </div>
-
-    <!-- Decorative bottom fade -->
+    <!-- Decorative bottom fade connecting to next section -->
     <div class="hero__bottom-fade"></div>
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import heroBg from '@/assets/images/person.jpg'
+import heroBg from '@/assets/images/two_person.png'
 
 const animate = ref(false)
 
@@ -64,85 +72,131 @@ onMounted(() => {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   background-image: v-bind("`url('${heroBg}')`");
   background-size: cover;
-  background-position: center;
+  background-position: center 15%;
   overflow: hidden;
+  padding: 2.5rem 1.5rem 1.75rem;
 }
 
-.hero__overlay {
+/* Subtle top gradient for legible header */
+.hero__overlay-top {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28%;
   background: linear-gradient(
     to bottom,
-    rgba(17, 27, 48, 0.7) 0%,
-    rgba(17, 27, 48, 0.5) 30%,
-    rgba(17, 27, 48, 0.4) 50%,
-    rgba(17, 27, 48, 0.6) 70%,
-    rgba(17, 27, 48, 0.85) 100%
+    rgba(40, 12, 18, 0.75) 0%,
+    rgba(40, 12, 18, 0.35) 50%,
+    transparent 100%
   );
+  pointer-events: none;
+  z-index: 1;
 }
 
-.hero__vignette {
+/* Deep smooth gradient at bottom to frame typography */
+.hero__overlay-bottom {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(75, 61, 91, 0.2) 100%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52%;
+  background: linear-gradient(
+    to top,
+    rgba(35, 10, 15, 0.96) 0%,
+    rgba(35, 10, 15, 0.85) 30%,
+    rgba(35, 10, 15, 0.5) 65%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Top Header ── */
+.hero__header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hero__top-decor {
-  position: absolute;
-  top: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 .hero__decor-line {
   display: block;
-  width: 40px;
+  width: 32px;
   height: 1px;
-  background: var(--color-gold);
-  opacity: 0.4;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
 }
 
-.hero__content {
+.hero__decor-diamond {
+  font-size: 0.45rem;
+  color: var(--color-gold-light);
+  line-height: 1;
+}
+
+.hero__families {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #f9f6f0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* ── Bottom Content ── */
+.hero__footer {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
-/* Families text */
-.hero__families {
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
-  font-weight: 400;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
+.hero__names-wrap {
   opacity: 0;
   transform: translateY(20px);
-  margin-bottom: 1.75rem;
 }
 
-/* Couple names */
 .hero__names {
   font-family: var(--font-cursive);
-  font-size: 3.8rem;
-  color: #fff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transform: translateY(20px);
+  font-size: clamp(2.6rem, 8.5vw, 3.4rem);
+  font-weight: 400;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.8);
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .hero__amp {
   display: inline-block;
-  font-size: 2.8rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.75em;
   color: var(--color-gold-light);
-  margin: 0 0.15rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 0.2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 /* Ornamental divider */
@@ -151,64 +205,67 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin: 1.5rem auto;
+  margin: 0.75rem auto;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
 
 .hero__orn-line {
-  width: 40px;
+  width: 45px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
 }
 
 .hero__orn-diamond {
-  font-size: 0.4rem;
-  color: var(--color-gold);
+  font-size: 0.38rem;
+  color: var(--color-gold-light);
 }
 
 /* Date */
 .hero__date {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 400;
   letter-spacing: 0.25em;
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateY(15px);
 }
 
 /* Venue hint */
 .hero__venue-hint {
   font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 300;
-  letter-spacing: 0.2em;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-gold-light);
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  max-width: 280px;
+  line-height: 1.6;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
 
 /* Scroll hint */
 .hero__scroll-hint {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
-  color: var(--color-navy-light);
+  gap: 0.25rem;
+  color: rgba(244, 239, 234, 0.7);
+  margin-top: 1.25rem;
   opacity: 0;
+  transform: translateY(10px);
+  cursor: pointer;
 }
 
 .hero__scroll-hint span {
   font-family: var(--font-sans);
-  font-size: 0.55rem;
-  letter-spacing: 0.25em;
+  font-size: 0.52rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
@@ -222,14 +279,25 @@ onMounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 60px;
   background: linear-gradient(to bottom, transparent, var(--color-warm-gray));
   z-index: 1;
 }
 
 /* Animation trigger class */
 .hero__animate {
-  animation: fadeInUp 0.8s ease forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: var(--delay, 0s);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

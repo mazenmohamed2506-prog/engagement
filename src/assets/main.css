@@ -2,16 +2,27 @@
 
 /* ── Custom Theme ── */
 @theme {
-  --color-navy: #4b3d5b; /* Text color - deep lavender-gray */
-  --color-navy-light: #89789e; /* Medium lavender */
-  --color-navy-dark: #312541; /* Dark deep purple */
-  --color-ivory: #fffbf7; /* Cream / off-white */
-  --color-ivory-dark: #f6eef2; /* Soft tinted cream */
-  --color-gold: #cfa86e; /* Subtle gold */
-  --color-gold-light: #e6c891;
-  --color-gold-dark: #a6844d;
-  --color-warm-gray: #fbf8fc; /* Page background */
-  --color-warm-gray-dark: #f0e6f3;
+  --color-burgundy-deep: #4a141a;
+  --color-burgundy-classic: #5c1d24;
+  --color-cream-warm: #efe7dc;
+  --color-ivory-soft: #f4efea;
+  --color-linen-soft: #f9f6f0;
+  --color-blush-cream: #d8c8b8;
+  --color-dusty-rose: #c4a49b;
+  --color-taupe-muted: #6d554b;
+  --color-earth-brown: #7b6258;
+
+  /* Semantic Color Mapping */
+  --color-navy: #4a141a; /* Deep Burgundy for primary text and titles */
+  --color-navy-light: #7b6258; /* Warm Earth Brown for subtitles and body */
+  --color-navy-dark: #5c1d24; /* Wine Red for accent titles */
+  --color-ivory: #f4efea; /* Soft Ivory */
+  --color-ivory-dark: #efe7dc; /* Warm Cream */
+  --color-gold: #c4a49b; /* Dusty Rose */
+  --color-gold-light: #d8c8b8; /* Blush Cream */
+  --color-gold-dark: #6d554b; /* Muted Taupe */
+  --color-warm-gray: #f9f6f0; /* Soft Linen */
+  --color-warm-gray-dark: #efe7dc; /* Warm Cream */
   --color-whatsapp: #25d366;
 
   --font-serif: 'Playfair Display', 'Georgia', serif;

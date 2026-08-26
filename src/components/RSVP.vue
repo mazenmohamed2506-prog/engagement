@@ -46,7 +46,7 @@
       </form>
 
       <p class="rsvp__footer">
-        Kindly confirm by <strong>July 25, 2026</strong>
+        Kindly confirm by <strong>September 20, 2026</strong>
       </p>
     </div>
   </section>
@@ -65,7 +65,7 @@ const isValid = computed(() => name.value.trim() && guests.value)
 function handleSubmit() {
   if (!isValid.value) return
 
-  const message = `Hello, I am ${name.value.trim()}. I am confirming my attendance at the engagement with ${guests.value} guest${guests.value > 1 ? 's' : ''}.`
+  const message = `Hello, I am ${name.value.trim()}. I am confirming my attendance at the wedding with ${guests.value} guest${guests.value > 1 ? 's' : ''}.`
   const encodedMessage = encodeURIComponent(message)
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
 

@@ -19,8 +19,8 @@
             <div class="flip-card__arch">
               <img :src="venueImg" alt="Wedding venue" class="flip-card__image" />
               <div class="flip-card__overlay">
-                <p class="flip-card__venue-name">Refaat Hassan Street</p>
-                <p class="flip-card__venue-location">Mokattam City, Cairo</p>
+                <p class="flip-card__venue-name">Volare Hall</p>
+                <p class="flip-card__venue-location">RAMAGE HOTEL & RESORT</p>
               </div>
             </div>
             <p class="flip-card__hint">Tap to see location</p>
@@ -35,7 +35,7 @@
               </div>
               <p class="flip-card__qr-subtitle">Point your camera at the QR code</p>
               <a 
-                href="https://maps.app.goo.gl/i8YHZVXUZ6QQvRPm7" 
+                href="https://maps.app.goo.gl/Fv7vCbF1wB4HX2Fg6?g_st=iw" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 class="flip-card__qr-link"
@@ -144,7 +144,7 @@ const isFlipped = ref(false)
   left: 0;
   right: 0;
   padding: 2rem 1.5rem;
-  background: linear-gradient(to top, rgba(17, 27, 48, 0.9), rgba(17, 27, 48, 0.5) 60%, transparent);
+  background: linear-gradient(to top, rgba(74, 20, 26, 0.95), rgba(74, 20, 26, 0.5) 60%, transparent);
   text-align: center;
 }
 
@@ -212,9 +212,10 @@ const isFlipped = ref(false)
   width: 160px;
   height: 160px;
   padding: 12px;
-  background: white;
+  background: var(--color-ivory);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(74, 20, 26, 0.15);
+  border: 1px solid rgba(196, 164, 155, 0.3);
 }
 
 .flip-card__qr-image {
@@ -266,7 +267,7 @@ const isFlipped = ref(false)
   border-radius: 8px;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(26, 39, 68, 0.06);
+  box-shadow: 0 2px 12px rgba(74, 20, 26, 0.05);
   border: 1px solid var(--color-warm-gray-dark);
 }
 
