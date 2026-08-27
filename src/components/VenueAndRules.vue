@@ -14,37 +14,63 @@
       <!-- 3D Flip Card -->
       <div class="flip-card" @click="isFlipped = !isFlipped">
         <div class="flip-card__inner" :class="{ 'flip-card__inner--flipped': isFlipped }">
-          <!-- Front: Venue Image -->
+          <!-- Front: Venue Image & Information -->
           <div class="flip-card__face flip-card__front">
             <div class="flip-card__arch">
               <img :src="venueImg" alt="Wedding venue" class="flip-card__image" />
-              <div class="flip-card__overlay">
-                <p class="flip-card__venue-name">Volare Hall</p>
-                <p class="flip-card__venue-location">RAMAGE HOTEL & RESORT</p>
+            </div>
+
+            <div class="flip-card__details">
+              <span class="flip-card__tag">Wedding Reception</span>
+              <h3 class="flip-card__venue-title">El Galaa Club</h3>
+              <p class="flip-card__venue-location">Heliopolis · Cairo, Egypt</p>
+
+              <div class="flip-card__cta-btn">
+                <span class="flip-card__cta-icon-wrap">
+                  <svg class="flip-card__cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </span>
+                <span class="flip-card__cta-label">Tap to See Location</span>
+                <svg class="flip-card__cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
               </div>
             </div>
-            <p class="flip-card__hint">Tap to see location</p>
           </div>
 
           <!-- Back: QR Code -->
           <div class="flip-card__face flip-card__back">
             <div class="flip-card__qr-content">
-              <p class="flip-card__qr-title">Scan for Directions</p>
+              <span class="flip-card__back-badge">Google Maps</span>
+              <p class="flip-card__qr-title">El Galaa Club</p>
               <div class="flip-card__qr-frame">
-                <img :src="qrCode" alt="Venue QR code" class="flip-card__qr-image" />
+                <img :src="qrCodeDataUrl" alt="Venue QR code" class="flip-card__qr-image" />
               </div>
-              <p class="flip-card__qr-subtitle">Point your camera at the QR code</p>
+              <p class="flip-card__qr-subtitle">Scan QR code for directions</p>
               <a 
-                href="https://maps.app.goo.gl/Fv7vCbF1wB4HX2Fg6?g_st=iw" 
+                :href="mapLocationUrl" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 class="flip-card__qr-link"
                 @click.stop
               >
-                Or Open in Google Maps
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>Open in Google Maps</span>
               </a>
             </div>
-            <p class="flip-card__hint flip-card__hint--back">Tap to flip back</p>
+            <div class="flip-card__back-hint">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+              <span>Tap to flip back</span>
+            </div>
           </div>
         </div>
       </div>
@@ -53,11 +79,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import venueImg from '@/assets/images/hand1.jpg'
-import qrCode from '@/assets/images/qr-code.png'
+import qrCodeImg from '@/assets/images/qr-code.png'
+import QRCode from 'qrcode'
 
 const isFlipped = ref(false)
+const mapLocationUrl = 'https://maps.app.goo.gl/Kmg8KSsX2PC4skTdA'
+const qrCodeDataUrl = ref(qrCodeImg)
+
+onMounted(async () => {
+  try {
+    qrCodeDataUrl.value = await QRCode.toDataURL(mapLocationUrl, {
+      color: { dark: '#4a141aff', light: '#fbf8f5ff' },
+      width: 400,
+      margin: 2
+    })
+  } catch (e) {
+    qrCodeDataUrl.value = qrCodeImg
+  }
+})
 </script>
 
 <style scoped>
@@ -97,13 +138,13 @@ const isFlipped = ref(false)
   perspective: 1000px;
   cursor: pointer;
   margin: 0 auto;
-  max-width: 300px;
+  max-width: 320px;
 }
 
 .flip-card__inner {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 4.35;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
 }
@@ -116,20 +157,25 @@ const isFlipped = ref(false)
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 10px 35px rgba(74, 20, 26, 0.14);
+  border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 .flip-card__front {
   display: flex;
   flex-direction: column;
+  background: var(--color-ivory);
 }
 
 .flip-card__arch {
   position: relative;
   flex: 1;
-  border-radius: 200px 200px 0 0;
+  min-height: 235px;
+  border-radius: 150px 150px 0 0;
   overflow: hidden;
+  margin: 10px 10px 0;
 }
 
 .flip-card__image {
@@ -138,47 +184,117 @@ const isFlipped = ref(false)
   object-fit: cover;
 }
 
-.flip-card__overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem 1.5rem;
-  background: linear-gradient(to top, rgba(74, 20, 26, 0.95), rgba(74, 20, 26, 0.5) 60%, transparent);
+.flip-card__details {
+  padding: 0.85rem 1rem 1rem;
   text-align: center;
+  background: var(--color-ivory);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.flip-card__venue-name {
+.flip-card__tag {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 0.2rem;
+}
+
+.flip-card__venue-title {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #4a141a;
+  letter-spacing: 0.01em;
+  margin: 0;
 }
 
 .flip-card__venue-location {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 0.25rem;
+  color: var(--color-navy-light);
+  margin-top: 0.15rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.85;
 }
 
-.flip-card__hint {
+.flip-card__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.62rem 1.25rem;
+  background: linear-gradient(135deg, #4a141a 0%, #6b1d26 100%);
+  color: #ffffff;
+  border: 1.5px solid rgba(212, 175, 55, 0.6);
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(74, 20, 26, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.15);
+  animation: ctaPulse 2.8s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card:hover .flip-card__cta-btn {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(74, 20, 26, 0.35), 0 0 0 3px rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, #5c1821 0%, #7d222d 100%);
+}
+
+.flip-card__cta-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.25);
+}
+
+.flip-card__cta-icon {
+  width: 13px;
+  height: 13px;
+  color: #ffd700;
+  animation: pinBounce 1.8s ease-in-out infinite;
+}
+
+.flip-card__cta-label {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-navy-dark);
-  text-align: center;
-  padding: 1rem 0;
-  opacity: 1;
+  color: #ffffff;
+  white-space: nowrap;
 }
 
-.flip-card__hint--back {
-  color: var(--color-gold-dark);
+.flip-card__cta-arrow {
+  width: 13px;
+  height: 13px;
+  color: var(--color-gold-light);
+  transition: transform 0.3s ease;
+}
+
+.flip-card:hover .flip-card__cta-arrow {
+  transform: translateX(3px);
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(74, 20, 26, 0.25), 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(74, 20, 26, 0.38), 0 0 0 6px rgba(212, 175, 55, 0);
+  }
+}
+
+@keyframes pinBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
 }
 
 /* Back face */
@@ -188,12 +304,22 @@ const isFlipped = ref(false)
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 1.5rem 1rem 1rem;
+}
+
+.flip-card__back-badge {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 0.2rem;
 }
 
 .flip-card__qr-content {
   text-align: center;
-  padding: 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -203,19 +329,20 @@ const isFlipped = ref(false)
 
 .flip-card__qr-title {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
   color: var(--color-navy);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .flip-card__qr-frame {
-  width: 160px;
-  height: 160px;
-  padding: 12px;
+  width: 155px;
+  height: 155px;
+  padding: 10px;
   background: var(--color-ivory);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(74, 20, 26, 0.15);
-  border: 1px solid rgba(196, 164, 155, 0.3);
+  border: 1px solid rgba(196, 164, 155, 0.4);
 }
 
 .flip-card__qr-image {
@@ -229,29 +356,49 @@ const isFlipped = ref(false)
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   color: var(--color-navy-light);
-  margin-top: 1.25rem;
+  margin-top: 0.85rem;
   opacity: 0.8;
 }
 
 .flip-card__qr-link {
-  display: inline-block;
-  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--color-gold-dark);
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-gold-dark);
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1.1rem;
+  border: 1.5px solid var(--color-gold-dark);
   border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
   transition: all 0.3s ease;
 }
 
 .flip-card__qr-link:hover {
   background: var(--color-gold-dark);
   color: var(--color-ivory);
+  transform: translateY(-1px);
+}
+
+.flip-card__back-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-navy-light);
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  opacity: 0.85;
 }
 
 /* ── Rules ── */

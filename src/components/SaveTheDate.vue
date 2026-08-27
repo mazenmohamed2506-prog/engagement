@@ -49,14 +49,14 @@
             v-for="d in 30"
             :key="d"
             class="calendar__day"
-            :class="{ 'calendar__day--wedding': d === 26 }"
+            :class="{ 'calendar__day--wedding': d === 9 }"
           >
-            <!-- Creamy Heart for wedding day (Sept 26) -->
-            <div v-if="d === 26" class="calendar__heart-wrap">
+            <!-- Creamy Heart for wedding day (Sept 9) -->
+            <div v-if="d === 9" class="calendar__heart-wrap">
               <svg class="calendar__heart-svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
-              <span class="calendar__heart-text">26</span>
+              <span class="calendar__heart-text">9</span>
             </div>
 
             <!-- Normal Days -->
@@ -67,8 +67,8 @@
         <!-- Footer Date Callout -->
         <div class="calendar__footer">
           <div class="calendar__footer-gem">◆</div>
-          <p class="calendar__footer-date">Saturday, September 26, 2026</p>
-          <p class="calendar__footer-tag">Volare Hall · RAMAGE HOTEL &amp; RESORT</p>
+          <p class="calendar__footer-date">Wednesday, September 9, 2026</p>
+          <p class="calendar__footer-tag">EL GALAA CLUB · CAIRO</p>
         </div>
       </div>
     </div>

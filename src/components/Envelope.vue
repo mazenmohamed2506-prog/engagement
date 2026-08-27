@@ -42,14 +42,14 @@
           <div class="envelope__card-content">
             <p class="envelope__card-eyebrow">You Are Cordially Invited</p>
             <p class="envelope__card-subline">to the wedding of</p>
-            <h2 class="envelope__card-names">Mohamed &amp; Asmaa</h2>
+            <h2 class="envelope__card-names">Mahmoud &amp; Radwa</h2>
             <div class="envelope__card-divider">
               <span class="div-line"></span>
               <span class="div-gem">◆</span>
               <span class="div-line"></span>
             </div>
-            <p class="envelope__card-date">26 · 09 · 2026</p>
-            <p class="envelope__card-day">Saturday Evening</p>
+            <p class="envelope__card-date">09 · 09 · 2026</p>
+            <p class="envelope__card-day">Wednesday Evening</p>
           </div>
         </div>
       </div>

@@ -23,8 +23,8 @@
           <!-- Footer -->
           <footer class="app__footer">
             <div class="app__footer-inner">
-              <p class="app__footer-names">Mohamed & Asmaa</p>
-              <p class="app__footer-date">26 · 09 · 2026</p>
+              <p class="app__footer-names">Mahmoud & Radwa</p>
+              <p class="app__footer-date">09 · 09 · 2026</p>
               <div class="app__footer-line"></div>
               <p class="app__footer-note">Made with love</p>
             </div>

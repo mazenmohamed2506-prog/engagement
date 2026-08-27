@@ -46,7 +46,7 @@
       </form>
 
       <p class="rsvp__footer">
-        Kindly confirm by <strong>September 20, 2026</strong>
+        Kindly confirm by <strong>September 1, 2026</strong>
       </p>
     </div>
   </section>

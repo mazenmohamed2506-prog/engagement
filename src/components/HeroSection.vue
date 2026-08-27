@@ -1,10 +1,10 @@
 <template>
   <section class="hero" id="hero">
-    <!-- Top & bottom lighting gradients to preserve photo faces clearly -->
+    <!-- Top & bottom soft lighting gradients -->
     <div class="hero__overlay-top"></div>
     <div class="hero__overlay-bottom"></div>
 
-    <!-- Top header: positioned above the faces -->
+    <!-- Top header & names: positioned in the open canvas above the portrait -->
     <div class="hero__header">
       <div class="hero__top-decor" :class="{ 'hero__animate': animate }" style="--delay: 0.1s">
         <span class="hero__decor-line"></span>
@@ -12,34 +12,36 @@
         <span class="hero__decor-line"></span>
       </div>
 
-      <p class="hero__families" :class="{ 'hero__animate': animate }" style="--delay: 0.3s">
+      <p class="hero__families" :class="{ 'hero__animate': animate }" style="--delay: 0.25s">
         Together with their families
       </p>
-    </div>
 
-    <!-- Bottom content: positioned below faces over natural dress/suit area -->
-    <div class="hero__footer">
-      <div class="hero__names-wrap" :class="{ 'hero__animate': animate }" style="--delay: 0.6s">
+      <div class="hero__names-wrap" :class="{ 'hero__animate': animate }" style="--delay: 0.45s">
         <h1 class="hero__names">
-          Mohamed <span class="hero__amp">&</span> Asmaa
+          Mahmoud <span class="hero__amp">&</span> Radwa
         </h1>
       </div>
 
-      <div class="hero__ornament" :class="{ 'hero__animate': animate }" style="--delay: 0.8s">
+      <div class="hero__ornament" :class="{ 'hero__animate': animate }" style="--delay: 0.65s">
         <span class="hero__orn-line"></span>
         <span class="hero__orn-diamond">◆</span>
         <span class="hero__orn-line"></span>
       </div>
 
-      <p class="hero__date" :class="{ 'hero__animate': animate }" style="--delay: 1s">
-        26 &nbsp;|&nbsp; 09 &nbsp;|&nbsp; 2026
+      <p class="hero__date" :class="{ 'hero__animate': animate }" style="--delay: 0.85s">
+        09 &nbsp;|&nbsp; 09 &nbsp;|&nbsp; 2026
       </p>
+    </div>
 
-      <p class="hero__venue-hint" :class="{ 'hero__animate': animate }" style="--delay: 1.2s">
-        Request the honour of your presence at our wedding
-      </p>
+    <!-- Bottom content: placed cleanly at footer without obstructing the children -->
+    <div class="hero__footer">
+      <div class="hero__badge-wrap" :class="{ 'hero__animate': animate }" style="--delay: 1.05s">
+        <p class="hero__venue-hint">
+          Request the honour of your presence at our wedding
+        </p>
+      </div>
 
-      <div class="hero__scroll-hint" :class="{ 'hero__animate': animate }" style="--delay: 1.5s">
+      <div class="hero__scroll-hint" :class="{ 'hero__animate': animate }" style="--delay: 1.25s">
         <span>Scroll Down</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 12 15 18 9"></polyline>
@@ -76,47 +78,46 @@ onMounted(() => {
   align-items: center;
   background-image: v-bind("`url('${heroBg}')`");
   background-size: cover;
-  background-position: center 15%;
+  background-position: center bottom;
   overflow: hidden;
-  padding: 2.5rem 1.5rem 1.75rem;
+  padding: 3rem 1.5rem 1.75rem;
 }
 
-/* Subtle top gradient for legible header */
+/* Subtle top gradient for luminous contrast on names */
 .hero__overlay-top {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 28%;
+  height: 40%;
   background: linear-gradient(
     to bottom,
-    rgba(40, 12, 18, 0.75) 0%,
-    rgba(40, 12, 18, 0.35) 50%,
+    rgba(250, 246, 240, 0.85) 0%,
+    rgba(250, 246, 240, 0.45) 55%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 1;
 }
 
-/* Deep smooth gradient at bottom to frame typography */
+/* Very subtle bottom vignette */
 .hero__overlay-bottom {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 52%;
+  height: 25%;
   background: linear-gradient(
     to top,
-    rgba(35, 10, 15, 0.96) 0%,
-    rgba(35, 10, 15, 0.85) 30%,
-    rgba(35, 10, 15, 0.5) 65%,
+    rgba(250, 246, 240, 0.8) 0%,
+    rgba(250, 246, 240, 0.3) 60%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 1;
 }
 
-/* ── Top Header ── */
+/* ── Top Header & Names ── */
 .hero__header {
   position: relative;
   z-index: 2;
@@ -124,7 +125,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  width: 100%;
+  max-width: 380px;
+  margin-top: 0.25rem;
 }
 
 .hero__top-decor {
@@ -140,25 +143,86 @@ onMounted(() => {
   display: block;
   width: 32px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-gold-dark), transparent);
 }
 
 .hero__decor-diamond {
   font-size: 0.45rem;
-  color: var(--color-gold-light);
+  color: var(--color-gold-dark);
   line-height: 1;
 }
 
 .hero__families {
   font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.35em;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #f9f6f0;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  color: var(--color-gold-dark);
+  margin-top: 0.4rem;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9);
   opacity: 0;
   transform: translateY(-10px);
+}
+
+.hero__names-wrap {
+  margin-top: 0.35rem;
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.hero__names {
+  font-family: var(--font-cursive);
+  font-size: clamp(2.9rem, 9.5vw, 3.7rem);
+  font-weight: 400;
+  color: #3b1016;
+  text-shadow: 0 2px 14px rgba(255, 255, 255, 0.95), 0 1px 3px rgba(74, 20, 26, 0.18);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.hero__amp {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.78em;
+  color: var(--color-gold-dark);
+  margin: 0 0.2rem;
+  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.9);
+}
+
+/* Ornamental divider */
+.hero__ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.6rem auto;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.hero__orn-line {
+  width: 45px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-dark), transparent);
+}
+
+.hero__orn-diamond {
+  font-size: 0.38rem;
+  color: var(--color-gold-dark);
+}
+
+/* Date */
+.hero__date {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #4a141a;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 /* ── Bottom Content ── */
@@ -171,82 +235,29 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
-.hero__names-wrap {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.hero__names {
-  font-family: var(--font-cursive);
-  font-size: clamp(2.6rem, 8.5vw, 3.4rem);
-  font-weight: 400;
-  color: #ffffff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.8);
-  line-height: 1.15;
-  white-space: nowrap;
-}
-
-.hero__amp {
-  display: inline-block;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.75em;
-  color: var(--color-gold-light);
-  margin: 0 0.2rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-}
-
-/* Ornamental divider */
-.hero__ornament {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 0.75rem auto;
+.hero__badge-wrap {
   opacity: 0;
   transform: translateY(15px);
 }
 
-.hero__orn-line {
-  width: 45px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-}
-
-.hero__orn-diamond {
-  font-size: 0.38rem;
-  color: var(--color-gold-light);
-}
-
-/* Date */
-.hero__date {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  color: #ffffff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transform: translateY(15px);
-}
-
-/* Venue hint */
 .hero__venue-hint {
   font-family: var(--font-sans);
-  font-size: 0.6rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-gold-light);
-  margin-top: 0.75rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  max-width: 280px;
-  line-height: 1.6;
-  opacity: 0;
-  transform: translateY(15px);
+  color: #4a141a;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 2px 10px rgba(74, 20, 26, 0.08);
+  max-width: 290px;
+  line-height: 1.5;
 }
 
 /* Scroll hint */
@@ -254,9 +265,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  color: rgba(244, 239, 234, 0.7);
-  margin-top: 1.25rem;
+  gap: 0.2rem;
+  color: #4a141a;
+  margin-top: 0.75rem;
   opacity: 0;
   transform: translateY(10px);
   cursor: pointer;
@@ -265,6 +276,7 @@ onMounted(() => {
 .hero__scroll-hint span {
   font-family: var(--font-sans);
   font-size: 0.52rem;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -279,7 +291,7 @@ onMounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 40px;
   background: linear-gradient(to bottom, transparent, var(--color-warm-gray));
   z-index: 1;
 }
@@ -298,6 +310,15 @@ onMounted(() => {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes bounceSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
   }
 }
 </style>
