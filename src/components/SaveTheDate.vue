@@ -28,7 +28,7 @@
               <path d="M7 12c2-2 5-2 7 0-2 2-5 2-7 0z"/>
             </svg>
           </div>
-          <h3 class="calendar__month">September 2026</h3>
+          <h3 class="calendar__month">November 2026</h3>
         </div>
 
         <!-- Divider Line -->
@@ -41,22 +41,22 @@
 
         <!-- Days Grid -->
         <div class="calendar__grid">
-          <!-- Empty slot for Monday (Sept 1 starts on Tuesday) -->
-          <div class="calendar__day calendar__day--empty"></div>
+          <!-- Empty slots for Monday–Saturday (Nov 1 starts on Sunday) -->
+          <div v-for="e in 6" :key="'empty-' + e" class="calendar__day calendar__day--empty"></div>
 
           <!-- Days 1 to 30 -->
           <div
             v-for="d in 30"
             :key="d"
             class="calendar__day"
-            :class="{ 'calendar__day--wedding': d === 9 }"
+            :class="{ 'calendar__day--wedding': d === 18 }"
           >
-            <!-- Creamy Heart for wedding day (Sept 9) -->
-            <div v-if="d === 9" class="calendar__heart-wrap">
+            <!-- Creamy Heart for wedding day (Nov 18) -->
+            <div v-if="d === 18" class="calendar__heart-wrap">
               <svg class="calendar__heart-svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
-              <span class="calendar__heart-text">9</span>
+              <span class="calendar__heart-text">18</span>
             </div>
 
             <!-- Normal Days -->
@@ -67,8 +67,8 @@
         <!-- Footer Date Callout -->
         <div class="calendar__footer">
           <div class="calendar__footer-gem">◆</div>
-          <p class="calendar__footer-date">Wednesday, September 9, 2026</p>
-          <p class="calendar__footer-tag">EL GALAA CLUB · CAIRO</p>
+          <p class="calendar__footer-date">Wednesday, November 18, 2026</p>
+          <p class="calendar__footer-tag">RAMAGE HOTEL & RESORT · VOLARE HALL</p>
         </div>
       </div>
     </div>

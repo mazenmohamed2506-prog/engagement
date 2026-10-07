@@ -15,16 +15,16 @@
         <div class="app__wrapper">
           <HeroSection />
           <Countdown />
-          <SaveTheDate />
-          <Agenda />
+          <!-- <SaveTheDate /> -->
+          <!-- <Agenda /> -->
           <VenueAndRules />
           <!-- <RSVP /> -->
 
           <!-- Footer -->
           <footer class="app__footer">
             <div class="app__footer-inner">
-              <p class="app__footer-names">Mahmoud & Radwa</p>
-              <p class="app__footer-date">09 · 09 · 2026</p>
+              <p class="app__footer-names">Mohamed & Asmaa</p>
+              <p class="app__footer-date">18 · 11 · 2026</p>
               <div class="app__footer-line"></div>
               <p class="app__footer-note">Made with love</p>
             </div>
@@ -45,8 +45,8 @@ import Envelope from '@/components/Envelope.vue'
 import AudioPlayer from '@/components/AudioPlayer.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import Countdown from '@/components/Countdown.vue'
-import SaveTheDate from '@/components/SaveTheDate.vue'
-import Agenda from '@/components/Agenda.vue'
+// import SaveTheDate from '@/components/SaveTheDate.vue'
+// import Agenda from '@/components/Agenda.vue'
 import VenueAndRules from '@/components/VenueAndRules.vue'
 // import RSVP from '@/components/RSVP.vue'
 

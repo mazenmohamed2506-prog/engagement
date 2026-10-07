@@ -11,52 +11,117 @@
         <line x1="115" y1="10" x2="140" y2="10" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
       </svg>
 
-      <!-- 3D Flip Card -->
+      <!-- 3D Flip Card: Front is Map, Back is QR -->
       <div class="flip-card" @click="isFlipped = !isFlipped">
         <div class="flip-card__inner" :class="{ 'flip-card__inner--flipped': isFlipped }">
-          <!-- Front: Venue Image & Information -->
+          <!-- Front Face: Venue & Interactive Map -->
           <div class="flip-card__face flip-card__front">
-            <div class="flip-card__arch">
-              <img :src="venueImg" alt="Wedding venue" class="flip-card__image" />
-            </div>
-
-            <div class="flip-card__details">
+            <div class="flip-card__front-inner">
               <span class="flip-card__tag">Wedding Reception</span>
-              <h3 class="flip-card__venue-title">El Galaa Club</h3>
-              <p class="flip-card__venue-location">Heliopolis · Cairo, Egypt</p>
+              <h3 class="flip-card__venue-title">Ramage Hotel &amp; Resort</h3>
+              <p class="flip-card__venue-location">Volare Hall · Cairo, Egypt</p>
 
-              <div class="flip-card__cta-btn">
-                <span class="flip-card__cta-icon-wrap">
-                  <svg class="flip-card__cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                </span>
-                <span class="flip-card__cta-label">Tap to See Location</span>
-                <svg class="flip-card__cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <!-- Back: QR Code -->
-          <div class="flip-card__face flip-card__back">
-            <div class="flip-card__qr-content">
-              <span class="flip-card__back-badge">Google Maps</span>
-              <p class="flip-card__qr-title">El Galaa Club</p>
-              <div class="flip-card__qr-frame">
-                <img :src="qrCodeDataUrl" alt="Venue QR code" class="flip-card__qr-image" />
-              </div>
-              <p class="flip-card__qr-subtitle">Scan QR code for directions</p>
+              <!-- Clickable Map Preview (OSM footer and zoom controls completely clipped) -->
               <a 
                 :href="mapLocationUrl" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="flip-card__qr-link"
+                class="flip-card__map-card"
+                title="Open in Google Maps"
+                @click.stop
+              >
+                <div class="flip-card__map-frame">
+                  <iframe 
+                    class="flip-card__map-iframe"
+                    :src="mapEmbedUrl"
+                    loading="lazy"
+                    scrolling="no"
+                    frameborder="0"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  ></iframe>
+
+                  <!-- Animated Luxury Gold Pin -->
+                  <div class="flip-card__map-overlay">
+                    <div class="flip-card__pin-container">
+                      <div class="flip-card__pin-pulse"></div>
+                      <div class="flip-card__pin-marker">
+                        <svg viewBox="0 0 24 24" class="flip-card__pin-svg" fill="currentColor">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                      </div>
+                      <span class="flip-card__pin-badge">Volare Hall</span>
+                    </div>
+
+                    <div class="flip-card__map-badge">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                      </svg>
+                      <span>Tap for GPS</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Direct Google Maps CTA -->
+              <a 
+                :href="mapLocationUrl" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="flip-card__maps-button"
                 @click.stop
               >
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Open in Google Maps</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+
+              <p class="flip-card__address-tag">
+                El-Moshir Tantawy Axis · Cairo
+              </p>
+            </div>
+
+            <!-- Hint: Tap to flip to QR Code -->
+            <div class="flip-card__hint-wrap">
+              <span class="flip-card__hint-text">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Tap card to view QR Code
+              </span>
+            </div>
+          </div>
+
+          <!-- Back Face: QR Code -->
+          <div class="flip-card__face flip-card__back">
+            <div class="flip-card__qr-content">
+              <span class="flip-card__back-badge">Scan for Directions</span>
+              <h3 class="flip-card__qr-title">Ramage Hotel &amp; Resort</h3>
+              <p class="flip-card__qr-hall">Volare Hall</p>
+
+              <div class="flip-card__qr-frame">
+                <img :src="qrCodeDataUrl" alt="Venue QR code" class="flip-card__qr-image" />
+              </div>
+
+              <p class="flip-card__qr-subtitle">Scan with camera for instant directions</p>
+
+              <a 
+                :href="mapLocationUrl" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="flip-card__maps-button flip-card__maps-button--compact"
+                @click.stop
+              >
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                   <polyline points="15 3 21 3 21 9"></polyline>
                   <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -64,12 +129,13 @@
                 <span>Open in Google Maps</span>
               </a>
             </div>
+
             <div class="flip-card__back-hint">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
                 <path d="M3 3v5h5"/>
               </svg>
-              <span>Tap to flip back</span>
+              <span>Tap to flip back to map</span>
             </div>
           </div>
         </div>
@@ -80,13 +146,16 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import venueImg from '@/assets/images/hand1.jpg'
 import qrCodeImg from '@/assets/images/qr-code.png'
 import QRCode from 'qrcode'
 
 const isFlipped = ref(false)
-const mapLocationUrl = 'https://maps.app.goo.gl/Kmg8KSsX2PC4skTdA'
+const mapLocationUrl = 'https://maps.app.goo.gl/Fv7vCbF1wB4HX2Fg6?g_st=iw'
 const qrCodeDataUrl = ref(qrCodeImg)
+
+// Center coordinates for Ramage Hotel & Resort (Mehwar El-Moshir Tantawy, Cairo)
+// Notice: No &marker=... parameter so the green Leaflet marker is not drawn
+const mapEmbedUrl = 'https://www.openstreetmap.org/export/embed.html?bbox=31.350%2C30.015%2C31.372%2C30.029&layer=mapnik'
 
 onMounted(async () => {
   try {
@@ -163,34 +232,21 @@ onMounted(async () => {
   border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
+/* Front Face: Venue & Map */
 .flip-card__front {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: var(--color-ivory);
+  padding: 1.15rem 0.95rem 0.85rem;
 }
 
-.flip-card__arch {
-  position: relative;
-  flex: 1;
-  min-height: 235px;
-  border-radius: 150px 150px 0 0;
-  overflow: hidden;
-  margin: 10px 10px 0;
-}
-
-.flip-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.flip-card__details {
-  padding: 0.85rem 1rem 1rem;
-  text-align: center;
-  background: var(--color-ivory);
+.flip-card__front-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 .flip-card__tag {
@@ -205,11 +261,12 @@ onMounted(async () => {
 
 .flip-card__venue-title {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-size: 1.28rem;
   font-weight: 600;
   color: #4a141a;
   letter-spacing: 0.01em;
   margin: 0;
+  line-height: 1.25;
 }
 
 .flip-card__venue-location {
@@ -220,84 +277,221 @@ onMounted(async () => {
   text-transform: uppercase;
   color: var(--color-navy-light);
   margin-top: 0.15rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
   opacity: 0.85;
 }
 
-.flip-card__cta-btn {
+/* Map Card */
+.flip-card__map-card {
+  position: relative;
+  width: 100%;
+  height: 185px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 4px 16px rgba(74, 20, 26, 0.12);
+  display: block;
+  text-decoration: none;
+  background: #e5e3df;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.flip-card__map-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 175, 55, 0.85);
+  box-shadow: 0 6px 22px rgba(74, 20, 26, 0.22);
+}
+
+.flip-card__map-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Precise CSS clipping: top -46px clips zoom controls; height +84px extends past container clipping the OSM attribution/donation footer! */
+.flip-card__map-iframe {
+  position: absolute;
+  top: -46px;
+  left: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 84px);
+  border: none;
+  pointer-events: none;
+  filter: saturate(1.15) contrast(1.05);
+}
+
+.flip-card__map-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(20, 25, 35, 0.24) 100%);
+  pointer-events: none;
+}
+
+/* Custom Animated Pin */
+.flip-card__pin-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-4px);
+}
+
+.flip-card__pin-pulse {
+  position: absolute;
+  top: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.35);
+  animation: mapPinPulse 2.2s infinite ease-out;
+  pointer-events: none;
+}
+
+.flip-card__pin-marker {
+  width: 30px;
+  height: 30px;
+  color: #4a141a;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  z-index: 2;
+  animation: mapPinBounce 2.5s infinite ease-in-out;
+}
+
+.flip-card__pin-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card__pin-badge {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #4a141a;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.18rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 0.15rem;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.flip-card__map-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(74, 20, 26, 0.88);
+  backdrop-filter: blur(4px);
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes mapPinPulse {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes mapPinBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Maps CTA Button */
+.flip-card__maps-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0.62rem 1.25rem;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.65rem;
+  padding: 0.58rem 1rem;
   background: linear-gradient(135deg, #4a141a 0%, #6b1d26 100%);
   color: #ffffff;
   border: 1.5px solid rgba(212, 175, 55, 0.6);
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(74, 20, 26, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.15);
-  animation: ctaPulse 2.8s ease-in-out infinite;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.flip-card:hover .flip-card__cta-btn {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(74, 20, 26, 0.35), 0 0 0 3px rgba(212, 175, 55, 0.3);
-  background: linear-gradient(135deg, #5c1821 0%, #7d222d 100%);
-}
-
-.flip-card__cta-icon-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: rgba(212, 175, 55, 0.25);
-}
-
-.flip-card__cta-icon {
-  width: 13px;
-  height: 13px;
-  color: #ffd700;
-  animation: pinBounce 1.8s ease-in-out infinite;
-}
-
-.flip-card__cta-label {
+  border-radius: 25px;
   font-family: var(--font-sans);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #ffffff;
-  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(74, 20, 26, 0.22);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-.flip-card__cta-arrow {
-  width: 13px;
-  height: 13px;
-  color: var(--color-gold-light);
-  transition: transform 0.3s ease;
+.flip-card__maps-button:hover {
+  background: linear-gradient(135deg, #5c1821 0%, #7d222d 100%);
+  border-color: rgba(212, 175, 55, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(74, 20, 26, 0.32);
 }
 
-.flip-card:hover .flip-card__cta-arrow {
-  transform: translateX(3px);
+.flip-card__maps-button--compact {
+  max-width: 220px;
+  margin-top: 0.75rem;
 }
 
-@keyframes ctaPulse {
-  0%, 100% {
-    box-shadow: 0 4px 15px rgba(74, 20, 26, 0.25), 0 0 0 0 rgba(212, 175, 55, 0.4);
-  }
-  50% {
-    box-shadow: 0 6px 22px rgba(74, 20, 26, 0.38), 0 0 0 6px rgba(212, 175, 55, 0);
-  }
+.flip-card__address-tag {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--color-navy-light);
+  margin-top: 0.35rem;
+  margin-bottom: 0.15rem;
+  opacity: 0.85;
 }
 
-@keyframes pinBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
+.flip-card__hint-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.25rem;
 }
 
-/* Back face */
+.flip-card__hint-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-navy-light);
+  padding: 0.35rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+
+.flip-card:hover .flip-card__hint-text {
+  background: rgba(212, 175, 55, 0.15);
+  color: #4a141a;
+  opacity: 1;
+}
+
+/* Back Face: QR Code */
 .flip-card__back {
   transform: rotateY(180deg);
   background: linear-gradient(160deg, var(--color-warm-gray-dark), var(--color-ivory));
@@ -305,34 +499,47 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 1rem 1rem;
-}
-
-.flip-card__back-badge {
-  font-family: var(--font-sans);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-gold-dark);
-  margin-bottom: 0.2rem;
+  padding: 1.25rem 1rem 0.95rem;
 }
 
 .flip-card__qr-content {
   text-align: center;
   flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+.flip-card__back-badge {
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 0.15rem;
+}
+
 .flip-card__qr-title {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-navy);
-  margin-bottom: 1rem;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.flip-card__qr-hall {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-top: 0.15rem;
+  margin-bottom: 0.75rem;
 }
 
 .flip-card__qr-frame {
@@ -356,33 +563,8 @@ onMounted(async () => {
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   color: var(--color-navy-light);
-  margin-top: 0.85rem;
+  margin-top: 0.75rem;
   opacity: 0.8;
-}
-
-.flip-card__qr-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-top: 0.85rem;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--color-gold-dark);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.5rem 1.1rem;
-  border: 1.5px solid var(--color-gold-dark);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.6);
-  transition: all 0.3s ease;
-}
-
-.flip-card__qr-link:hover {
-  background: var(--color-gold-dark);
-  color: var(--color-ivory);
-  transform: translateY(-1px);
 }
 
 .flip-card__back-hint {
